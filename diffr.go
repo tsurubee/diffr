@@ -16,12 +16,15 @@ type Diffr struct {
 	ErrStream io.Writer
 }
 
+func helpInfo() {
+	fmt.Println("diffr: Try `diffr -help' for more information.")
+}
+
 func (d *Diffr) Run(args []string) int {
 	var (
 		version bool
 	)
 
-	// Define option flag parse
 	flags := flag.NewFlagSet(Name, flag.ContinueOnError)
 	flags.SetOutput(d.ErrStream)
 
@@ -30,6 +33,7 @@ func (d *Diffr) Run(args []string) int {
 
 	// Parse commandline flag
 	if err := flags.Parse(args[1:]); err != nil {
+		helpInfo()
 		return ExitCodeError
 	}
 
