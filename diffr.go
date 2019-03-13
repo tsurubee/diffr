@@ -52,7 +52,7 @@ func (d *Diffr) Run(args []string) int {
 		helpInfo()
 		return ExitCodeError
 	case l == 2:
-		return CharacterDiff(args[0], args[1])
+		return diffMain(args[0], args[1])
 	case 2 < l:
 		fmt.Printf("diffr: extra operand %v\n", args[2])
 		helpInfo()
