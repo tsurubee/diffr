@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  server-a:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    hostname: 'server-a'
+    volumes:
+      - ../diffr:/go/src/github.com/tsurubee/diffr
+    working_dir: /go/src/github.com/tsurubee/diffr
+
+  server-b:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    hostname: 'server-b'
+    volumes:
+      - ../diffr:/go/src/github.com/tsurubee/diffr
+    working_dir: /go/src/github.com/tsurubee/diffr
+    links:
+      - server-a:server-b
